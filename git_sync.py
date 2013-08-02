@@ -311,11 +311,7 @@ if remote_user:
     remote_host = remote_user + '@' + remote_host
 
 
-<<<<<<< HEAD
-def growl_start( ):
-=======
 def growl_start():
->>>>>>> master
     try:
         mini(
             "Starting to sync %s and %s on %s" % (
@@ -332,12 +328,8 @@ def growl_start():
         print('Growl is probably not running.')
         print('GitSync Starting')
 
-<<<<<<< HEAD
-def growl_done( ):
-=======
 
 def growl_done():
->>>>>>> master
     try:
         mini(
             "Completed sync of %s and %s on %s" % (
@@ -355,25 +347,21 @@ def growl_done():
         print('GitSync Finished')
 
 
-<<<<<<< HEAD
-def growl_error( message ):
+def growl_error(message):
     try:
         mini(
-            message
-            , applicationName='GitSync'
-            , noteType='Message'
-            , title='GitSync Error'
+            message,
+            applicationName='GitSync',
+            noteType='Message',
+            title='GitSync Error'
         )
     except socket.error:
-        print 'Unable to send growl notification.'
-        print 'Growl is probably not running.'
-        print 'GitSync Finished'
+        print('Unable to send growl notification.')
+        print('Growl is probably not running.')
+        print('GitSync Finished')
 
 
-def run_remote_has_modified_files( ):
-=======
 def run_remote_has_modified_files():
->>>>>>> master
     result = execute(
         remote_has_modified_files,
         host=remote_host,
@@ -450,24 +438,16 @@ def callback(event):
         run_send_local_changes_to_remote()
 
     except IOError as e:
-        print "I/O error({0}): {1}".format(e.errno, e.strerror)
+        print("I/O error({0}): {1}".format(e.errno, e.strerror))
         growl_error("I/O error({0}): {1}".format(e.errno, e.strerror))
     except paramiko.SSHException as e:
         pprint.pformat(e)
     except Exception as inst:
-<<<<<<< HEAD
-        print "sync failed."
-        print type(inst)
-        print inst.args
-        print inst
-        #growl_failed( )
-=======
         print("sync failed.")
         print(type(inst))
         print(inst.args)
         print(inst)
         growl_failed()
->>>>>>> master
         raise
     else:
         growl_done()
