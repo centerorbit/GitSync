@@ -22,8 +22,6 @@ from fabric.colors import blue, cyan, green, magenta, red, white, yellow
 from fsevents import Observer
 from fsevents import Stream
 
-import gntp
-import gntp.notifier
 from gntp.notifier import mini
 
 # These are a bunch of constants that identify different type of file system
@@ -312,6 +310,7 @@ if remote_user:
 
 
 def growl_start():
+    puts('growl message')
     try:
         mini(
             "Starting to sync %s and %s on %s" % (
@@ -327,9 +326,11 @@ def growl_start():
         print('Unable to send growl notification.')
         print('Growl is probably not running.')
         print('GitSync Starting')
+    puts('growl message: finished')
 
 
 def growl_done():
+    puts('growl message')
     try:
         mini(
             "Completed sync of %s and %s on %s" % (
@@ -345,9 +346,11 @@ def growl_done():
         print('Unable to send growl notification.')
         print('Growl is probably not running.')
         print('GitSync Finished')
+    puts('growl message: finished')
 
 
 def growl_error(message):
+    puts('growl message')
     try:
         mini(
             message,
@@ -359,6 +362,7 @@ def growl_error(message):
         print('Unable to send growl notification.')
         print('Growl is probably not running.')
         print('GitSync Finished')
+    puts('growl message: finished')
 
 
 def run_remote_has_modified_files():
